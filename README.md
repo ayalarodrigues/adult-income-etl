@@ -21,3 +21,9 @@ Construir um pipeline inicial de análise de dados, seguindo as etapas de organi
 2. Instalar as dependências:
    ```bash
    pip install -r requirements.txt
+
+## Organização adotada
+O projeto foi estruturado desde o início com separação entre dados brutos, dados processados, código-fonte e documentação, para facilitar a manutenção, a análise e o versionamento no GitHub.
+
+## Estratégia de desenvolvimento
+O desenvolvimento está sendo realizado em pequenos commits, com foco não apenas na entrega final, mas também no aprendizado progressivo ao longo da disciplina.
