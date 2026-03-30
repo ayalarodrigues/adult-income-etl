@@ -40,6 +40,10 @@ def transformar_dados(df):
     df = df.replace("?", pd.NA) #procura o valor '?' no df e troca por um valor ausente/nulo(pd.NA)
     print("\nA Substituição do símbolo '?' por um nulo foi realizada!")
 
+    #COntar nulos por coluna
+    print("\nQuantidade de nulos por coluna:")
+    print(df.isna().sum()) #verifica, célula por célula, se o valor é nulo. Retorna True para ausente e False para preenchido. sum() soma os True.
+
     
     return df
 
