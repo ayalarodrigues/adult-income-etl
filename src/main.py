@@ -50,12 +50,22 @@ def transformar_dados(df):
     print("\nColunas categóricas para limpeza de texto:")
 
     #Remove espaços extras do início e fim
-    for coluna in colunas_categoria:
+    for coluna in colunas_categoria: #percorre cada coluna categórica
         df[coluna] = df[coluna].str.strip()
     
     print("\nEspaços extras foram removidos das colunas categóricas!\n")
     print("\nAmostra das colunas textuais após strip:")
     print(df[colunas_categoria].head())
+
+    #Mo
+    print("\Categorias únicas de workclass:")
+    print(df["workclass"].dropna().unique()) #dropna remove nulos da visualização / unique mostra valores únicos da coluna
+
+    print("\nCategorias únicas de occupation:")
+    print(df["occupation"].dropna().unique())
+
+    print("\Categorias únicas de native_country:")
+    print(df["native_country"].dropna().unique()[:10])
 
     
     return df
