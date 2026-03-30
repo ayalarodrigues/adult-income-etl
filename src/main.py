@@ -2,7 +2,13 @@ import pandas as pd
 
 
 def carregar_dados():
-    pass
+
+    print("\n --- FASE DE EXTRAÇÃO--- \n")
+
+    df = pd.read_csv("data/raw/adult.csv") #lê o arquivo CSV e cria uma Dataframe
+
+    return df
+    
 
 
 def transformar_dados(df):
@@ -18,7 +24,9 @@ def salvar_dados(df):
 
 
 def main():
-    print("Projeto final iniciado com sucesso.")
+    df = carregar_dados()
+    print("\nDataFrame carregado!\n")
+    
 
 
 if __name__ == "__main__":
