@@ -36,6 +36,10 @@ def transformar_dados(df):
     print("\nColunas renomeadas:\n")
     print(df.columns.tolist())
 
+    #Substitui o símbolo ? por um valor nulo real
+    df = df.replace("?", pd.NA) #procura o valor '?' no df e troca por um valor ausente/nulo(pd.NA)
+    print("\nA Substituição do símbolo '?' por um nulo foi realizada!")
+
     
     return df
 
