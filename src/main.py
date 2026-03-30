@@ -15,7 +15,29 @@ def carregar_dados():
 
 
 def transformar_dados(df):
-    pass
+    '''Etapa inicial da transformação:
+    ajuste de nomes de colunas para um padrão'''
+
+    print("\n --- FASE DE TRANSFORMAÇÃO ---\n")
+
+    #renomeia colunas do dataframe ao passar um dicionário
+    df = df.rename(
+        columns ={
+            "educational-num": "education_num",
+            "marital-status": "marital_status",
+            "capital-gain": "capital_gain",
+            "capital-loss": "capital_loss",
+            "hours-per-week": "hours_per_week",
+            "native-country": "native_country",
+            "gender": "sex"
+        }
+    )
+
+    print("\nColunas renomeadas:\n")
+    print(df.columns.tolist())
+
+    
+    return df
 
 
 def gerar_relatorios(df):
@@ -55,13 +77,15 @@ def main():
     #seleciona colunas numéricas
     colunas_numericas = df.select_dtypes(include=["int64", "float64"]).columns.tolist() #dtypes seleciona colunas com base em um tipo de dado(no caso, pede que sejam inteiros e decimais)
     #seleciona colunas categóricas/textuais
-    colunas_categoria = df.select_dtypes(include=["object"]).columns.tolist()
+    colunas_categoria = df.select_dtypes(include=["object"]).columns.tolist() #object seleciona colunas de texto
 
     print("\nColunas numéricas:\n")
     print(colunas_numericas)
 
     print("\nColunas categóricas:\n")
     print(colunas_categoria)
+
+    df = transformar_dados(df)
           
 
 if __name__ == "__main__":
