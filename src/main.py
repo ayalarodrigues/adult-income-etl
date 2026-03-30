@@ -44,6 +44,19 @@ def transformar_dados(df):
     print("\nQuantidade de nulos por coluna:")
     print(df.isna().sum()) #verifica, célula por célula, se o valor é nulo. Retorna True para ausente e False para preenchido. sum() soma os True.
 
+    #seleciona colunas categóricas/textuais
+    colunas_categoria = df.select_dtypes(include=["object"]).columns.tolist() #object seleciona colunas de texto
+    
+    print("\nColunas categóricas para limpeza de texto:")
+
+    #Remove espaços extras do início e fim
+    for coluna in colunas_categoria:
+        df[coluna] = df[coluna].str.strip()
+    
+    print("\nEspaços extras foram removidos das colunas categóricas!\n")
+    print("\nAmostra das colunas textuais após strip:")
+    print(df[colunas_categoria].head())
+
     
     return df
 
@@ -92,6 +105,7 @@ def main():
 
     print("\nColunas categóricas:\n")
     print(colunas_categoria)
+
 
     df = transformar_dados(df)
           
