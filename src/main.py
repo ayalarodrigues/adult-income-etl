@@ -46,8 +46,22 @@ def main():
     print("\nEstatísticas descritivas:\n")
     print(df.describe())
 
+    #mostra dimensão da base
     print("\nDimensão da base:\n")
-    print(df.shape)
+    print(df.shape) #mostra a dimensão da base no formato (linhas, colunas)
+
+    print("\n--- IDENTIFICAÇÃO DOS TIPOS DE COLUNAS DA BASE ---\n")
+
+    #seleciona colunas numéricas
+    colunas_numericas = df.select_dtypes(include=["int64", "float64"]).columns.tolist() #dtypes seleciona colunas com base em um tipo de dado(no caso, pede que sejam inteiros e decimais)
+    #seleciona colunas categóricas/textuais
+    colunas_categoria = df.select_dtypes(include=["object"]).columns.tolist()
+
+    print("\nColunas numéricas:\n")
+    print(colunas_numericas)
+
+    print("\nColunas categóricas:\n")
+    print(colunas_categoria)
           
 
 if __name__ == "__main__":
