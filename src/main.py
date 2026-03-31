@@ -96,6 +96,22 @@ def transformar_dados(df):
     print("\nQuantidade de nulo por coluna após tratamento com moda:")
     print(df.isna().sum())
 
+    #cria uma lista de colunas que devem ser numéricas
+    colunas_numericas = [
+        "age",
+        "fnlwgt",
+        "education_num",
+        "capital_gain",
+        "capital_loss",
+        "hours_per_week",
+    ]
+
+    for coluna in colunas_numericas:
+        df[coluna] = pd.to_numeric(df[coluna], errors="coerce") #coerce é usado pq se aparecer algum valor inválido, ele vira um nulo em vez de gerar um erro
+    
+    print("\nTipos de dados após ajuste:")
+    print(df.dtypes)
+
     
     return df
 
