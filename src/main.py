@@ -248,6 +248,27 @@ def gerar_relatorios(df):
 
     relatorios["renda_por_sexo"] = renda_por_sexo
 
+
+    # --------------- Análise 2: Resumo por Agrupamento Educacional ------------------ #
+
+    renda_por_escolaridade = (df.groupby("education_group").agg( #agrupa pelos blocos educacionais criados(basico, medio, superior, pos_graduacao)
+        total_registros = ("income_binary", "count"),
+        renda_alta_percentual = ("income_binary", "mean"), #uso da média da variável binária como porporção de renda alta
+        idade_media = ("age", "mean"),
+        mediana_horas_semanais = ("hours_per_week", "median"), #coloca uma mediana
+        media_anos_estudo=("education_num", "mean"), #aproveita a coluna numérica de educação para dar um resumo adicional 
+    ).reset_index())
+
+    renda_por_escolaridade["renda_alta_percentual"] = (
+        renda_por_escolaridade["renda_alta_percentual"]* 100
+    )
+
+    print("\Análise 2 - Renda por agrupamento educacional:")
+    print(renda_por_escolaridade)
+
+    relatorios["renda_por_escolaridade"] = renda_por_escolaridade
+
+
     return relatorios
     
 
