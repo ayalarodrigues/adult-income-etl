@@ -263,10 +263,31 @@ def gerar_relatorios(df):
         renda_por_escolaridade["renda_alta_percentual"]* 100
     )
 
-    print("\Análise 2 - Renda por agrupamento educacional:")
+    print("\nAnálise 2 - Renda por agrupamento educacional:")
     print(renda_por_escolaridade)
 
     relatorios["renda_por_escolaridade"] = renda_por_escolaridade
+
+    # --------------- Análise 3: Resumo por Faixa Etária ------------------ #
+
+    renda_por_faixa_etaria = (df.groupby("age_group").agg(
+        total_registros = ("income_binary", "count"),
+        renda_alta_percentual = ("income_binary", "mean"),
+        idade_media = ("age", "mean"),
+        idade_mediana = ("age", "median"),
+        horas_media_semanais = ("hours_per_week", "mean"),
+        escolaridade_media = ("education_num", "mean"),
+    ).reset_index())
+
+
+    renda_por_faixa_etaria["renda_alta_percentual"] = (
+        renda_por_faixa_etaria["renda_alta_percentual"] * 100
+    )
+    
+    print("\nAnálise 3 - Renda por faixa etária:")
+    print(renda_por_faixa_etaria)
+
+    relatorios["renda_por_faixa_etaria"] = renda_por_faixa_etaria
 
 
     return relatorios
