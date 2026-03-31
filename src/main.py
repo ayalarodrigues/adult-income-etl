@@ -67,6 +67,17 @@ def transformar_dados(df):
     print("\Categorias únicas de native_country:")
     print(df["native_country"].dropna().unique()[:10])
 
+    #Aplicação da moda para colunas textuais(categóricas) com dados nulos
+    print("\n --- TRATAMENTO DE DADOS AUSENTES COM MODA --- \n")
+    print("Moda workclass:")
+    print(df["workclass"].mode()) #calcula a moda da coluna, ou seja, o valor que aparece com maior frequência
+
+    print("\nModa occupation:")
+    print(df["occupation"].mode())
+
+    print("\nModa native_country:")
+    print(df["native_country"].mode())
+
     
     return df
 
