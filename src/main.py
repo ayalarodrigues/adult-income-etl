@@ -185,6 +185,34 @@ def transformar_dados(df):
     print("\nDistribuição da coluna weekly_workload:")
     print(df["weekly_workload"].value_counts())
 
+    # ---------------------------------------------------------------------- #
+
+    # Nova variável 4: Agrupamento educacional#
+    
+    '''A coluna 'education' possui muitas categorias.
+    Aqui elas são agrupadas em blocos de classificação para facilitar futuras análises'''
+
+    def agrupar_escolaridade(educacao):
+        if educacao in [
+            "preschool", "1st-4th", "5th-6th", "7th-8th", "9th", "10th", "11th", "12th"
+        ]:
+            return "basico"
+        elif educacao in ["HS-grad", "Some-college"]:
+            return "medio"
+        elif educacao in ["Assoc-acdm", "Assoc-voc", "Bachelors"]:
+            return "superior"
+        else:
+            return "pos-graduacao"
+        
+
+    df["education_group"] = df["education"].apply(agrupar_escolaridade)    
+    
+    print("\nColuna education_group criada!")
+    print(df[["education", "education_group"]].head(15))
+
+    print("\nDistribuição da coluna education_group:")
+    print(df["education_group"].value_counts())
+
     
 
     return df
