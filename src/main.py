@@ -67,6 +67,7 @@ def transformar_dados(df):
     print("\Categorias únicas de native_country:")
     print(df["native_country"].dropna().unique()[:10])
 
+    '''
     #Aplicação da moda para colunas textuais(categóricas) com dados nulos
     print("\n --- TRATAMENTO DE DADOS AUSENTES COM MODA --- \n")
     print("Moda workclass:")
@@ -77,6 +78,23 @@ def transformar_dados(df):
 
     print("\nModa native_country:")
     print(df["native_country"].mode())
+    '''
+    #cálculo de modas
+    moda_workclass = df["workclass"].mode()[0] #retorna uma série com a moda e pegamos o primeiro valor com [0]
+    moda_occupation = df["occupation"].mode()[0]
+    moda_native_country = df["native_country"].mode()[0]
+
+    print("\nModa workclass:", moda_workclass)
+    print("\nModa occupation:", moda_occupation)
+    print("\nModa native_country:", moda_native_country)
+
+    #Preenchimento de dados ausentes com a moda da coluna
+    df["workclass"] = df["workclass"].fillna(moda_workclass)
+    df["occupation"] = df["occupation"].fillna(moda_occupation)
+    df["native_country"] = df["native_country"].fillna(moda_native_country)
+
+    print("\nQuantidade de nulo por coluna após tratamento com moda:")
+    print(df.isna().sum())
 
     
     return df
