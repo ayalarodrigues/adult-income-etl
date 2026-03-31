@@ -219,7 +219,13 @@ def transformar_dados(df):
 
 
 def gerar_relatorios(df):
-    pass
+    print("\n Etapa de Análise com GroupBy\n")
+
+    #dicionário vazio
+    relatorios = {}
+
+    return relatorios
+    
 
 
 def salvar_dados(df):
@@ -271,6 +277,10 @@ def main():
 
     print("Dimensão da base após transformação:")
     print(df.shape)
+
+    relatorios = gerar_relatorios(df)
+    print("\nRelatórios gerados:")
+    print(relatorios.keys())
 
 
     #df = transformar_dados(df)
