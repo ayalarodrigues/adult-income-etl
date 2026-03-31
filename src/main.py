@@ -112,7 +112,19 @@ def transformar_dados(df):
     print("\nTipos de dados após ajuste:")
     print(df.dtypes)
 
+    #o map pega cada valor da coluna income e procura esse valor no dicionário
+    #se encontrar <=50K, troca por 0
+    df["income_binary"] = df["income"].map({
+        "<=50K": 0,
+        ">50K": 1
+    })
     
+    print("\nColuna income_binary criada!\n")
+    print(df[["income", "income_binary"]].head(10))
+
+    print("\nDistribuição de income_binary:")
+    print(df["income_binary"].value_counts(dropna=False)) #value_counts conta quantas vezes cada valor aparece
+    #dropna=False porque, caso o mapeamento tenha algum problema, isso mostra possíveis NaN
     return df
 
 
