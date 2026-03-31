@@ -163,6 +163,30 @@ def transformar_dados(df):
     print("\nDistribuição da coluna age_group:")
     print(df["age_group"].value_counts())
 
+    # ---------------------------------------------------------------------- #
+
+    # Nova variável 3: Classificação de carga horária semanal#
+
+    '''A ideia aqui é transformar uma variável quantitativa em faixas de valores para futuras interpretações'''
+
+    #recebe um número e devolve uma categoria textual
+    def classificar_carga_horaria(horas):
+        if horas < 35:
+            return "baixa"
+        elif horas < 45:
+            return "normal"
+        else:
+            return "alta"
+    df["weekly_workload"] = df["hours_per_week"].apply(classificar_carga_horaria)
+
+    print("\nColuna weekly_workload criada!\n")
+    print(df[["hours_per_week", "weekly_workload"]].head(10))
+
+    print("\nDistribuição da coluna weekly_workload:")
+    print(df["weekly_workload"].value_counts())
+
+    
+
     return df
 
 
