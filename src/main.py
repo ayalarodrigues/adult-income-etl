@@ -283,11 +283,30 @@ def gerar_relatorios(df):
     renda_por_faixa_etaria["renda_alta_percentual"] = (
         renda_por_faixa_etaria["renda_alta_percentual"] * 100
     )
-    
+
     print("\nAnálise 3 - Renda por faixa etária:")
     print(renda_por_faixa_etaria)
 
     relatorios["renda_por_faixa_etaria"] = renda_por_faixa_etaria
+
+    # --------------- Análise 4: Resumo por Carga horária semanal ------------------ #
+
+    renda_por_carga_horaria = (df.groupby("weekly_workload").agg(
+        total_registros = ("income_binary", "count"),
+        renda_alta_percentual = ("income_binary", "mean"),
+        horas_media_semanais = ("hours_per_week", "mean"),
+        idade_media=("age", "mean"),
+        escolaridade_media = ("education_num", "mean"),
+    ).reset_index())
+
+    renda_por_carga_horaria["renda_alta_percentual"] = (
+        renda_por_carga_horaria["renda_alta_percentual"] * 100
+    )
+
+    print("\nAnálise 4 - Renda por carga horária semanal:")
+    print(renda_por_carga_horaria)
+
+    relatorios["renda_por_carga_horaria"] = renda_por_carga_horaria
 
 
     return relatorios
