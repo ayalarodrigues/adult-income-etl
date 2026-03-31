@@ -161,8 +161,17 @@ def main():
     print("\nColunas categóricas:\n")
     print(colunas_categoria)
 
-
+    #Atualiza o df com base já transformada
     df = transformar_dados(df)
+
+    print("\nBase após transformação:")
+    print(df.head())
+
+    print("Dimensão da base após transformação:")
+    print(df.shape)
+
+
+    #df = transformar_dados(df)
           
 
 if __name__ == "__main__":
