@@ -112,6 +112,15 @@ def transformar_dados(df):
     print("\nTipos de dados após ajuste:")
     print(df.dtypes)
 
+    # ---------------------------------------------------------------------- #
+
+    # Nova variável 1: Indicador de renda #
+
+    '''Converte a variável categórica 'income' em uma variável binária:
+    0 para renda menor ou igual a 50K
+    1 para renda maior que 50K
+    Essa transformação visa facilitar análises futuras'''
+
     #o map pega cada valor da coluna income e procura esse valor no dicionário
     #se encontrar <=50K, troca por 0
     df["income_binary"] = df["income"].map({
@@ -125,6 +134,35 @@ def transformar_dados(df):
     print("\nDistribuição de income_binary:")
     print(df["income_binary"].value_counts(dropna=False)) #value_counts conta quantas vezes cada valor aparece
     #dropna=False porque, caso o mapeamento tenha algum problema, isso mostra possíveis NaN
+
+    # ---------------------------------------------------------------------- #
+
+    # Nova variável 2: Faixa etária com apply #
+
+    '''A coluna 'age' é numérica. 
+    Aqui ela é convertida em uma categoria para análises agregadas'''
+
+    #função que define os critérios de classificação das idades
+    def classificar_faixa_etaria(idade):
+        if idade < 30:
+            return "jovem"
+        elif idade < 50:
+            return "adulto"
+        elif idade < 65:
+            return "meia-idade"
+        else:
+            return "idoso"
+    
+    #apply pega o valor da coluna 'age', chama a função e devolve o resultado em uma nova coluna
+    #pega uma idadem verifica em qual faixa ela se encaixa e grava a categoria correspondente em 'age_group'
+    df["age_group"] = df["age"].apply(classificar_faixa_etaria)
+
+    print("\nColuna age_group criada com apply!\n")
+    print(df[["age", "age_group"]].head(10))
+
+    print("\nDistribuição da coluna age_group:")
+    print(df["age_group"].value_counts())
+
     return df
 
 
