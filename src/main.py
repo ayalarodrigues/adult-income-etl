@@ -219,10 +219,34 @@ def transformar_dados(df):
 
 
 def gerar_relatorios(df):
+
+    '''Etapa de análise:
+    Gera resumos agregados com groupby()
+    para apoio do relatório e das exportações'''
+
     print("\n Etapa de Análise com GroupBy\n")
 
     #dicionário vazio
     relatorios = {}
+
+    # --------------- Análise 1: Resumo por sexo ------------------ #
+
+    renda_por_sexo = (
+        df.groupby("sex").agg( #agrupa os dados por sexo e aplica várias métricas d euma vez com o agg
+            total_registros = ("income_binary", "count"), #conta quantos registros existem por sexo
+            idade_media = ("age", "mean"), #calcula a média da idade por sexo
+            horas_media_semanais = ("hours_per_week", "mean"), #calcula a média das horas semanais
+            proporcao_renda_alta = ("income_binary", "mean") #calcula a média da variável binária, que seria a proporção de pessoas com renda alta
+        ).reset_index()
+    )
+
+    #converte proporção em percentual
+    renda_por_sexo["percentual_renda_alta"] = renda_por_sexo["proporcao_renda_alta"] * 100
+
+    print("\nAnálise 1 - Renda por sexo\n")
+    print(renda_por_sexo)
+
+    relatorios["renda_por_sexo"] = renda_por_sexo
 
     return relatorios
     
