@@ -418,6 +418,26 @@ def gerar_relatorios(df):
 
     print("\n --- ETAPA DE ORGANIZAÇÃO COM PIVOT TABLE ---\n")
 
+    # --------------------------------------------------- #
+
+    # PIVOT 1: Percentual de Renda alta por escolaridade  #
+
+
+    pivot_renda_sexo_escolaridade = pd.pivot_table(
+        df,
+        index = "education_group", #as linahs da tabela serão os grupos educacionais
+        columns="sex", #as colunas da tabela serão o sexo
+        values="income_binary", #o valor analisado será a coluna binária de renda
+        aggfunc="mean", #agregação será a média
+        fill_value=0, #se falta algo, preenche com zero
+    )
+
+    pivot_renda_sexo_escolaridade = pivot_renda_sexo_escolaridade * 100
+
+    print("\nPivot 1 - Percentual de renda alta por escolaridade e sexo:\n")
+    print(pivot_renda_sexo_escolaridade)
+
+
 
     return relatorios
     
