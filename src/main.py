@@ -285,7 +285,13 @@ def transformar_dados(df):
     print("\nDistribuição da coluna education_group:")
     print(df["education_group"].value_counts())
 
-    
+    tabela_regioes = criar_tabela_regioes()
+
+    #faz a junção da base com a tabela auxiliar
+    df = df.merge(tabela_regioes, on = "native_country", how="left") #left mantém todas as linhas da base e apenas acrescenta a região quando houver uma correspondência
+    #a chave de junção é a coluna de país (on="native_country")
+    print("\nMerge com tabela de regiões realizado.")
+    print(df[["native_country", "world_region"]].head(15))
 
     return df
 
