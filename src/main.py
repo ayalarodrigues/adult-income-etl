@@ -294,7 +294,7 @@ def transformar_dados(df):
     print(df[["native_country", "world_region"]].head(15))
 
     print("\nQuantidade de nulos na coluna world_region após o merge:")
-    print(df["world_region"].isna().sum())
+    print(df["world_region"].isna().sum()) #conta quantos registros dicaram sem região depois do merge
 
     #Caso alguma categoria esteja sem região, preenche com 'regiao_desconhecida'
     df["world_region"] = df["world_region"].fillna("regiao_desconhecida")
@@ -395,6 +395,25 @@ def gerar_relatorios(df):
 
     relatorios["renda_por_carga_horaria"] = renda_por_carga_horaria
 
+    # --------- Análise 5: Resumo da Região Geográfica -------------
+
+    renda_por_regiao = (
+        df.groupby("world_region").agg(
+            total_registros = ("income_binary", "count"),
+            renda_alta_percentual = ("income_binary", "mean"),
+            idade_media =("age", "mean"),
+            horas_media_semanais = ("hours_per_week", "mean"),
+        ).reset_index()
+    )
+
+    renda_por_regiao["renda_alta_percentual"] = (
+        renda_por_regiao["renda_alta_percentual"] * 100
+    )
+
+    print("\nAnálise 5 - Renda por Região Geográfica:\n")
+    print(renda_por_regiao)
+
+    relatorios["renda_por_regiao"] = renda_por_regiao
 
     return relatorios
     
@@ -460,3 +479,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+#tempo médio de trabalho por status marital
+#tempo de trabalho por gênero - ração
+#salaŕio por tempo d etrabalho
+
+#binario com 0 e 1 para renda
