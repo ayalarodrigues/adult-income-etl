@@ -461,7 +461,10 @@ def gerar_relatorios(df):
 
 
 def salvar_dados(df):
-    pass
+
+    print("\n --- ETAPA DE EXPORTAÇÃO --- ")
+    
+    
 
 
 def main():
