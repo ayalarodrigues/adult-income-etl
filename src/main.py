@@ -293,6 +293,15 @@ def transformar_dados(df):
     print("\nMerge com tabela de regiões realizado.")
     print(df[["native_country", "world_region"]].head(15))
 
+    print("\nQuantidade de nulos na coluna world_region após o merge:")
+    print(df["world_region"].isna().sum())
+
+    #Caso alguma categoria esteja sem região, preenche com 'regiao_desconhecida'
+    df["world_region"] = df["world_region"].fillna("regiao_desconhecida")
+
+    print("\nDistribuição da coluna world_region:")
+    print(df["world_region"].value_counts())
+
     return df
 
 
