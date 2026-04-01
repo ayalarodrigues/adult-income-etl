@@ -415,6 +415,10 @@ def gerar_relatorios(df):
 
     relatorios["renda_por_regiao"] = renda_por_regiao
 
+
+    print("\n --- ETAPA DE ORGANIZAÇÃO COM PIVOT TABLE ---\n")
+
+
     return relatorios
     
 
