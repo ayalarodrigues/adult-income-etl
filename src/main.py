@@ -436,6 +436,7 @@ def gerar_relatorios(df):
 
     print("\nPivot 1 - Percentual de renda alta por escolaridade e sexo:\n")
     print(pivot_renda_sexo_escolaridade)
+    relatorios["pivot_renda_sexo_escolaridade"] = pivot_renda_sexo_escolaridade
 
     # --------------------------------------------------- #
 
@@ -453,11 +454,7 @@ def gerar_relatorios(df):
 
     print("\nPivot 2 - Média de horas semanais por região e faixa etária:\n")
     print(pivot_horas_regiao_idade)
-
-
-
-
-
+    relatorios["pivot_horas_regiao_idade"] = pivot_horas_regiao_idade
 
     return relatorios
     
