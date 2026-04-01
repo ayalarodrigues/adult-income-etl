@@ -529,8 +529,12 @@ def salvar_dados(df, relatorios):
 
 
 def main():
+
+    # EXTRACT
+
     df = carregar_dados()
     print("\nDataFrame carregado!\n")
+
 
     #mostra as primeiras 5 linhas
     print("\nPrimeiras 5 linhas:\n")
@@ -552,6 +556,7 @@ def main():
     print("\nDimensão da base:\n")
     print(df.shape) #mostra a dimensão da base no formato (linhas, colunas)
 
+
     print("\n--- IDENTIFICAÇÃO DOS TIPOS DE COLUNAS DA BASE ---\n")
 
     #seleciona colunas numéricas
@@ -565,6 +570,8 @@ def main():
     print("\nColunas categóricas:\n")
     print(colunas_categoria)
 
+    # TRANSFORM
+
     #Atualiza o df com base já transformada
     df = transformar_dados(df)
 
@@ -574,22 +581,16 @@ def main():
     print("Dimensão da base após transformação:")
     print(df.shape)
 
+    # ANÁLISE
+
     relatorios = gerar_relatorios(df)
     print("\nRelatórios gerados:")
     print(relatorios.keys())
 
-    df = carregar_dados()
-    df = transformar_dados(df)
+    # LOAD / EXPORT
     salvar_dados(df, relatorios)
           
 
 if __name__ == "__main__":
     main()
 
-
-
-#tempo médio de trabalho por status marital
-#tempo de trabalho por gênero - ração
-#salaŕio por tempo d etrabalho
-
-#binario com 0 e 1 para renda
