@@ -468,6 +468,43 @@ def salvar_dados(df, relatorios):
 
     print("\nArquivo data/processed/adult_income_tratado.csv exportado!\n")
 
+    relatorios["renda_por_sexo"].to_csv(
+        "data/processed/renda_por_sexo.csv",
+        index = False,
+        encoding = "utf-8",
+    )
+
+    print("\nArquivo data/processed/renda_por_sexo.csv foi exportado!")
+
+    relatorios["renda_por_escolaridade"].to_csv(
+        "data/processed/renda_por_escolaridade.csv",
+        index = False,
+        encoding = "utf-8",
+    )
+    print("\nArquivo data/processed/renda_por_escolaridade.csv foi exportado!")
+
+
+    relatorios["renda_por_faixa_etaria"].to_csv(
+        "data/processed/renda_por_faixa_etaria.csv",
+        index = False,
+        encoding = "utf-8",
+    )
+    print("\nArquivo data/processed/renda_por_faixa_etaria.csv foi exportado!")
+
+    relatorios["renda_por_carga_horaria"].to_csv(
+        "data/processed/renda_por_carga_horaria.csv",
+        index = False,
+        encoding = "utf-8",
+    )
+    print("\nArquivo data/processed/renda_por_carga_horaria.csv foi exportado!")
+
+    relatorios["renda_por_regiao"].to_csv(
+        "data/processed/renda_por_regiao.csv",
+        index = False,
+        encoding = "utf-8",
+    )
+    print("\nArquivo data/processed/renda_por_regiao.csv foi exportado!")
+
     
 
 
