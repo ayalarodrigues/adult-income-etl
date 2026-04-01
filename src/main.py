@@ -460,10 +460,14 @@ def gerar_relatorios(df):
     
 
 
-def salvar_dados(df):
+def salvar_dados(df, relatorios):
 
     print("\n --- ETAPA DE EXPORTAÇÃO --- ")
-    
+
+    df.to_csv("data/processed/adult_income_tratado.csv", index = False, encoding = "utf-8")
+
+    print("\nArquivo data/processed/adult_income_tratado.csv exportado!\n")
+
     
 
 
@@ -517,8 +521,9 @@ def main():
     print("\nRelatórios gerados:")
     print(relatorios.keys())
 
-
-    #df = transformar_dados(df)
+    df = carregar_dados()
+    df = transformar_dados(df)
+    salvar_dados(df, relatorios)
           
 
 if __name__ == "__main__":
