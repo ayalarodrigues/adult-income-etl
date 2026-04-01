@@ -437,6 +437,26 @@ def gerar_relatorios(df):
     print("\nPivot 1 - Percentual de renda alta por escolaridade e sexo:\n")
     print(pivot_renda_sexo_escolaridade)
 
+    # --------------------------------------------------- #
+
+    # PIVOT 2: Média de horas semanais por regiao e faixa etária  #
+
+
+    pivot_horas_regiao_idade = pd.pivot_table(
+        df,
+        index="world_region",
+        columns="age_group",
+        values="hours_per_week",
+        aggfunc="mean",
+        fill_value=0,
+    )
+
+    print("\nPivot 2 - Média de horas semanais por região e faixa etária:\n")
+    print(pivot_horas_regiao_idade)
+
+
+
+
 
 
     return relatorios
