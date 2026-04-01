@@ -468,6 +468,7 @@ def salvar_dados(df, relatorios):
 
     print("\nArquivo data/processed/adult_income_tratado.csv exportado!\n")
 
+    #Exporta resultados das análises em CSV
     relatorios["renda_por_sexo"].to_csv(
         "data/processed/renda_por_sexo.csv",
         index = False,
@@ -504,6 +505,25 @@ def salvar_dados(df, relatorios):
         encoding = "utf-8",
     )
     print("\nArquivo data/processed/renda_por_regiao.csv foi exportado!")
+
+    #Exporta resultado da análise em JSON
+    relatorios["renda_por_escolaridade"].to_json(
+        "data/processed/renda_por_escolaridade.json",
+        orient = "records",
+        force_ascii = "False", #caracteres acentuados
+        indent=4,
+    )
+
+    print("\nArquivo data/processed/renda_por_escolaridade.json exportado!")
+
+    relatorios["pivot_renda_sexo_escolaridade"].to_json(
+        "data/processed/pivot_renda_sexo_escolaridade.json",
+        orient = "records",
+        force_ascii = "False",
+        indent=4,
+    )
+
+    print("\nArquivo data/processed/pivot_renda_sexo_escolaridade.json exportado!")
 
     
 
