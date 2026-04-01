@@ -13,6 +13,78 @@ def carregar_dados():
     return df
     
 
+def criar_tabela_regioes():
+    """
+    Aqui, usei o Gemini para gerar esse dicionário com o nome dos países.
+    Cria um dicionário com duas listas: uma com os países e outra com a região de cada país.
+    """
+
+    registros = [
+        # América do Norte
+        ("United-States", "america_norte"),
+        ("Canada", "america_norte"),
+        ("Mexico", "america_norte"),
+
+        # América Central e Caribe
+        ("Puerto-Rico", "america_central_caribe"),
+        ("Cuba", "america_central_caribe"),
+        ("Dominican-Republic", "america_central_caribe"),
+        ("Jamaica", "america_central_caribe"),
+        ("Haiti", "america_central_caribe"),
+        ("Honduras", "america_central_caribe"),
+        ("Guatemala", "america_central_caribe"),
+        ("Nicaragua", "america_central_caribe"),
+        ("El-Salvador", "america_central_caribe"),
+        ("Trinadad&Tobago", "america_central_caribe"),
+
+        # América do Sul
+        ("Columbia", "america_sul"),
+        ("Ecuador", "america_sul"),
+        ("Peru", "america_sul"),
+
+        # Europa
+        ("England", "europa"),
+        ("France", "europa"),
+        ("Germany", "europa"),
+        ("Greece", "europa"),
+        ("Holand-Netherlands", "europa"),
+        ("Hungary", "europa"),
+        ("Ireland", "europa"),
+        ("Italy", "europa"),
+        ("Poland", "europa"),
+        ("Portugal", "europa"),
+        ("Scotland", "europa"),
+        ("Yugoslavia", "europa"),
+
+        # Ásia
+        ("Cambodia", "asia"),
+        ("China", "asia"),
+        ("Hong", "asia"),
+        ("India", "asia"),
+        ("Iran", "asia"),
+        ("Japan", "asia"),
+        ("Laos", "asia"),
+        ("Philippines", "asia"),
+        ("Taiwan", "asia"),
+        ("Thailand", "asia"),
+        ("Vietnam", "asia"),
+        ("South", "asia"),
+
+        # Grupo específico para territórios dos EUA
+        ("Outlying-US(Guam-USVI-etc)", "territorios_eua"),
+    ]
+
+    tabela_regioes = pd.DataFrame(
+        registros,
+        columns=["native_country", "world_region"]
+    )
+
+    print("\nTabela auxiliar de regiões criada com sucesso.")
+    print(tabela_regioes.head(10))
+    print("\nQuantidade de países mapeados:", len(tabela_regioes))
+
+    return tabela_regioes
+
 
 def transformar_dados(df):
     '''Etapa inicial da transformação:
